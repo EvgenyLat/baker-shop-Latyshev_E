@@ -1,6 +1,6 @@
 import './App.css'
 // import Layout from "./components/navigation/Layout.tsx";
-import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
+import {Navigate, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import {Paths} from "./utils/paths.ts";
 import Home from "./components/Home.tsx";
 import Customers from "./components/Customers.tsx";
@@ -14,6 +14,7 @@ import {navItems, productItems} from "./configurations/nav-config.ts";
 import ErrorPage from "./components/servicePages/ErrorPage.tsx";
 import {useEffect} from "react";
 import NavigatorDesk from "./components/navigation/NavigatorDesk.tsx";
+import SignIn from "./components/SignIn.tsx";
 
 function App() {
     const location = useLocation();
@@ -35,9 +36,11 @@ function App() {
                 <Route path={Paths.CART} element={<ShoppingCart/>}/>
                 {/*<Route path={Paths.PRODUCTS} element={<Products/>}/>*/}
                 {/*<Route path={Paths.PRODUCTS} element={<ProductLayout/>}>*/}
+                <Route path={Paths.SIGN} element={<SignIn/>}/>
                 <Route path={Paths.PRODUCTS} element={<NavigatorDesk items={productItems}/>}>
                     <Route path={Paths.BREAD} element={<Bread/>}/>
                     <Route path={Paths.DAIRY} element={<Dairy/>}/>
+                    <Route path={Paths.BACK} element={<Navigate to={Paths.HOME}/>}/>
                 </Route>
             </Route>
             <Route path={'*'} element={<ErrorPage/>}/>
