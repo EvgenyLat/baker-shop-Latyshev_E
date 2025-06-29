@@ -18,7 +18,6 @@ import Login from "./components/servicePages/Login.tsx";
 import Logout from "./components/servicePages/Logout.tsx";
 import {Roles, type RouteType} from "./utils/shop-types.ts";
 import {useAppSelector} from "./redux/hooks.ts";
-import Registration from "./components/servicePages/Registration.tsx";
 
 function App() {
     const location = useLocation();
@@ -33,9 +32,6 @@ function App() {
         return (
             item.role === Roles.ALL ||
             item.role === Roles.USER && authUser||
-            item.role === Roles.ADMIN && authUser && authUser.email.includes('admin')||
-            item.role === Roles.NO_AUTH && !authUser||
-            item.role === Roles.NO_ADMIN && authUser && !authUser.email.includes('admin')
         )
     }
 
@@ -62,7 +58,6 @@ function App() {
                 <Route path={Paths.LOGIN} element={<Login/>}/>
                 <Route path={Paths.LOGOUT} element={<Logout/>}/>
             </Route>
-            <Route path={Paths.REGISTER} element={<Registration/>}/>
             <Route path={'*'} element={<ErrorPage/>}/>
         </Routes>
     )
