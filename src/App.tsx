@@ -25,17 +25,17 @@ function App() {
     const navigate = useNavigate();
     const {authUser} = useAppSelector(state => state.auth)
     useEffect(() => {
-        if (location.pathname === `/${Paths.ERROR}`)
+        if(location.pathname === `/${Paths.ERROR}`)
             navigate('/')
     }, []);
 
-    const predicate = (item: RouteType) => {
+    const predicate = (item:RouteType) => {
         return (
             item.role === Roles.ALL ||
-            item.role === Roles.USER && authUser ||
-            item.role === Roles.ADMIN && authUser && authUser.includes('admin') ||
-            item.role === Roles.NO_AUTH && !authUser ||
-            item.role === Roles.NO_ADMIN && authUser && !authUser.includes('admin')
+            item.role === Roles.USER && authUser||
+            item.role === Roles.ADMIN && authUser && authUser.email.includes('admin')||
+            item.role === Roles.NO_AUTH && !authUser||
+            item.role === Roles.NO_ADMIN && authUser && !authUser.email.includes('admin')
         )
     }
 
